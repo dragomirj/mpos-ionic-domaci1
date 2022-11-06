@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Azuriranje selektovanog vozila</ion-title>
+    <ion-icon name="close" slot="end" size="large" (click)="dismiss()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea [(ngModel)]="dj.name" placeholder="Unesite naziv/broj linije..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="dj.away" placeholder="Unesite koliko je daleko data linija..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" [(ngModel)]="dj.date"></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-button expand="full" (click)="__updateData()">Azuriranje vozila</ion-button>
+      <ion-button expand="full" (click)="__deleteData()">Brisanje vozila</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

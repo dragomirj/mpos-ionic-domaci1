@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Dodavanje nove linije</ion-title>
+    <ion-icon name="close" slot="end" size="large" (click)="dismiss()"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea [(ngModel)]="dataName" placeholder="Unesite naziv/broj linije..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea [(ngModel)]="dataAway" placeholder="Unesite koliko je daleko data linija..."></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+        <ion-modal [keepContentsMounted]="true">
+          <ng-template>
+            <ion-datetime id="datetime" value={{_today}} [(ngModel)]=" dataDate" 
+            minuteValues="0,15,30,45" dayValues={{_day}} monthValues={{_mon}}></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-button expand="full" (click)="addData()">Dodajte novu liniju</ion-button>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
