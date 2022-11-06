@@ -13,5 +13,22 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-content class="ion-padding">
+    <form (ngSubmit)="_login()" [formGroup]="credentials">
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input type="email" placeholder="Email" formControlName="email"></ion-input>
+        <ion-note slot="error" *ngIf="(email.dirty || email.touched) && email.errors">Email nije validan!</ion-note
+        >
+      </ion-item>
+      <ion-item fill="solid" class="ion-margin-bottom">
+        <ion-input type="password" placeholder="Password" formControlName="password"></ion-input>
+        <ion-note slot="error" *ngIf="(password.dirty || password.touched) && password.errors">Sifra mora da ima najmanje 7 karaktera!</ion-note
+        >
+      </ion-item>
+  
+      <ion-button type="submit" expand="block" [disabled]="!credentials.valid" color="success" shape="round">Prijava</ion-button>
+      <ion-button type="button" expand="block" color="secondary" (click)="_register()" color="dark" shape="round">Kreiranje naloga</ion-button
+      >
+    </form>
+  </ion-content>
 </ion-content>

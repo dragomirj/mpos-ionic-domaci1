@@ -1,8 +1,11 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
+    <ion-title>Tab2</ion-title>
+    <ion-buttons slot="end" (click)="__logout()">
+      <ion-button shape="round" fill="outline" color="success">
+        <ion-icon name="log-out-outline"></ion-icon>
+        LOGOUT</ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -12,4 +15,53 @@
       <ion-title size="large">Tab 2</ion-title>
     </ion-toolbar>
   </ion-header>
+
+  <ion-card color="tertiary">
+    <ion-card-header>
+      <ion-card-title>GSP</ion-card-title>
+      <ion-card-subtitle>Spisak prevoza i koliko su udaljeni</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngFor="let data of dj; let _index = index">
+        <!-- LOOP-START -->
+        <ion-item>
+          <ion-thumbnail slot="start">
+            <img alt="Silhouette of mountains" src="assets\icon\bus.png" />
+          </ion-thumbnail>
+          <ion-label>{{data.name}}</ion-label>
+
+          <ion-chip (click)="__goToUpdatePage(data)">
+            <ng-template [ngIf]="data.away<=3" [ngIfElse]="middle">
+              <ion-avatar class="close"></ion-avatar>
+            </ng-template>
+
+            <ng-template #middle>
+              <ion-avatar *ngIf="data.away<6;else far" class="middle"></ion-avatar>
+            </ng-template>
+    
+            <ng-template #far>
+              <ion-avatar class="far"></ion-avatar>
+            </ng-template>
+            <ion-label>{{data.away}}</ion-label>
+          </ion-chip>
+        </ion-item> 
+        <ion-item>Vozilo ce biti na odredistu u {{ data.date.slice(11,-9) }}</ion-item> 
+        <!-- LOOP-END -->
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="__goToAddPage()">
+      <ion-icon name="add-circle"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+  
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="ion-text-center">DJ DJ DJ</ion-title>
+  </ion-toolbar>
+</ion-footer>
